@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="assets/style.css">
+    <title>My Quizz</title>
+</head>
+
+<body>
+    <header>
+        <h1> 5 questions. 4 réponses possibles.</h1>
+        <h3>HTML / CSS / JavaScript</h3>
+        <span> Êtes-vous prêt ? </span><br>
+        <button id="start"> START </button>
+
+    </header>
+    <main>
+        <div id="scoreA"> Mon score :<span id="score"></span> </div>
+
+        <div id="containerQuizz">
+
+            <div class="question animate__animated animate__backInDown">
+
+                <h4 id="question" class="intituleQuestion"></h4>
+
+                <div class="colonneRep">
+                    <button class="reponse" onclick="reply(this) "></button>
+                    <button class="reponse"  onclick="reply(this) "></button>
+                    <button class="reponse" onclick="reply(this) "></button>
+                    <button class="reponse" onclick="reply(this) "></button>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </main>
+    <!-- <footer>
+    <p>Créé en novembre 2022. Merci d'avoir joué ! <a href="https://github.com/YassirKarmati">Mon GitHub</a> <a href="https://www.linkedin.com/in/yassirkarmati/">Mon profil LinkedIn</a></p>
+</footer> -->
+    <script src="assets/app.js"></script>
+</body>
+
+</html>
