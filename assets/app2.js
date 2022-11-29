@@ -80,7 +80,11 @@ displayQuestion();
 
 
 // TODO :
-// Trouver comment mettre des animations lorsque l'on passe à la question suivante
+// Trouver comment mettre des animations lorsque l'on passe à la question suivante (pas quand la div mais arrive mais quand elle part)
+// Faut il modifier avec innerHTLM la classe de l'élément ou bien autre chose ?
 // Ajouter une animation de félicitations (confettis)
 // Ajouter l'aléatoire dans les questions / réponses
 // Réussir à réinitialiser le jeu avec le bouton
+// Demander à Thomas pourquoi la fonction reply ne fonctionne pas quand elle est dans la fonction startQuizz qui contient tout le quizz
+// Ajouter un timer de 15 secondes pour chaque question qui se réinitialise à chaque question. Si le timer bip = question suivante
+//
