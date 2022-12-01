@@ -24,6 +24,9 @@ let reponse = [
 ];
 let bonneReponse = ["Asie", "42", "Ornithorynque", "1789", "Des volcans"];
 
+let tabInter = [];
+
+
 function startQuizz() {
     document.querySelector("#support").hidden = true;
     document.querySelector("#containerQuizz").hidden = false;
@@ -33,6 +36,8 @@ function startQuizz() {
 }
 let counter = 0;
 let score = 0;
+let randomQ = randomNumber(0, 4);
+let randomR = randomNumber(0, 3);
 
 // Pour réaliser le quizz, nous avons besoin de trois fonctions pour l'instant :
 
@@ -88,3 +93,9 @@ displayQuestion();
 // Demander à Thomas pourquoi la fonction reply ne fonctionne pas quand elle est dans la fonction startQuizz qui contient tout le quizz
 // Ajouter un timer de 15 secondes pour chaque question qui se réinitialise à chaque question. Si le timer bip = question suivante
 //
+
+// Le problème d'undefined est que la boucle for continue de lire le tableau question mais arrive à [5] qui ne contient rien
+
+function randomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
