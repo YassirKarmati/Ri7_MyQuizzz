@@ -4,6 +4,17 @@
 //      compter à quelle questions nous sommes dans l'index du tableau des questions
 //      afin de passer correctement aux questions suivantes.
 
+// Pour réaliser le quizz, nous avons besoin de trois fonctions pour l'instant :
+
+// function displayQuestion() servira a afficher les questions dans le HTML.
+
+// function displayReponse() servira a afficher les 4 réponses possibles dans des boutons clicables.
+// Pour cela, on utilise le querySelectorAll qui permet d'obtenir une liste d'élément (grâce au All)
+// La boucle for servira a afficher les réponses chacunes dans une question grace à l'index de reponse[counter][i]
+
+// function reply(elem) servira a vérifier si la réponse donner par le joueur correspond à la bonne réponse. Si c'est le cas : score ++.
+// Elle permet aussi de passer à la question suivante en augmentant la variable counter.
+
 document.querySelector("#containerQuizz").hidden = true;
 document.querySelector("#monScore").hidden = true;
 
@@ -24,9 +35,6 @@ let reponse = [
 ];
 let bonneReponse = ["Asie", "42", "Ornithorynque", "1789", "Des volcans"];
 
-let tabInter = [];
-
-
 function startQuizz() {
     document.querySelector("#support").hidden = true;
     document.querySelector("#containerQuizz").hidden = false;
@@ -34,25 +42,19 @@ function startQuizz() {
     counter = 0;
     score = 0;
 }
+
 let counter = 0;
 let score = 0;
-let randomQ = randomNumber(0, 4);
-let randomR = randomNumber(0, 3);
-
-// Pour réaliser le quizz, nous avons besoin de trois fonctions pour l'instant :
-
-// function displayQuestion() servira a afficher les questions dans le HTML.
-
-// function displayReponse() servira a afficher les 4 réponses possibles dans des boutons clicables.
-// Pour cela, on utilise le querySelectorAll qui permet d'obtenir une liste d'élément (grâce au All)
-// La boucle for servira a afficher les réponses chacunes dans une question grace à l'index de reponse[counter][i]
-
-// function reply(elem) servira a vérifier si la réponse donner par le joueur correspond à la bonne réponse. Si c'est le cas : score ++.
-// Elle permet aussi de passer à la question suivante en augmentant la variable counter.
+let random = randomNumber(0, questions.length -1);
+function randomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 function displayQuestion() {
-    if (questions[counter] !== undefined) {
-        document.querySelector("#question").innerHTML = questions[counter];
+    if (counter < 5) {
+        random = randomNumber(0, questions.length -1);
+        questions.innerHTML = questions[random];
+        document.querySelector("#question").innerHTML = questions[random];
         displayReponse();
     } else {
         document.querySelector("#support").hidden = false;
@@ -66,17 +68,22 @@ function displayQuestion() {
 
 function displayReponse() {
     let container = document.querySelectorAll("#reponse");
-    for (let i = 0; i <= reponse[counter].length; i++) {
-        container[i].innerHTML = reponse[counter][i];
+    for (let i = 0; i <= container.length; i++) {
+        container[i].innerHTML = reponse[random][i];
     }
 }
 
 function reply(elem) {
-    if (elem.innerHTML == bonneReponse[counter]) {
+
+    console.log(random)
+    if (elem.innerHTML == bonneReponse[random]) {
         score++;
         document.querySelector("#score").innerHTML = score;
     }
     counter++;
+    questions.splice(random, 1);
+    reponse.splice(random, 1);
+    bonneReponse.splice(random, 1);
     displayQuestion();
 
 }
@@ -87,15 +94,7 @@ displayQuestion();
 // TODO :
 // Trouver comment mettre des animations lorsque l'on passe à la question suivante (pas quand la div mais arrive mais quand elle part)
 // Faut il modifier avec innerHTLM la classe de l'élément ou bien autre chose ?
+
 // Ajouter une animation de félicitations (confettis)
-// Ajouter l'aléatoire dans les questions / réponses
-// Réussir à réinitialiser le jeu avec le bouton
-// Demander à Thomas pourquoi la fonction reply ne fonctionne pas quand elle est dans la fonction startQuizz qui contient tout le quizz
+
 // Ajouter un timer de 15 secondes pour chaque question qui se réinitialise à chaque question. Si le timer bip = question suivante
-//
-
-// Le problème d'undefined est que la boucle for continue de lire le tableau question mais arrive à [5] qui ne contient rien
-
-function randomNumber(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
